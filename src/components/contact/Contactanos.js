@@ -5,6 +5,7 @@ import {Header,Button,Icon,List,ListItem,Body,Right,Left,Content} from 'native-b
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import fondo from '../../assets/img/allende.jpg'
 import {Actions} from "react-native-router-flux";
+import openMap from 'react-native-open-maps';
 
 const MIN_HEIGHT = Header.HEIGHT;
 const MAX_HEIGHT = 250;
@@ -48,6 +49,10 @@ export default class Contactanos extends Component {
         super();
         this.state = { showNavTitle: false };
     }
+    goToAllende() {
+        openMap({ latitude: 20.915978, longitude: -100.765236 });
+    }
+
     llamame=()=>{
 
         const message = '+52 (55) 5292 1154';
@@ -133,6 +138,19 @@ export default class Contactanos extends Component {
 
                             <Body>
                             <Text>info@cerveceriaallende.com</Text>
+                            </Body>
+                            <Right/>
+                        </ListItem>
+                        <ListItem itemDivider >
+                            <Text style={styles.subTitle}>Direcciòn:</Text>
+                        </ListItem>
+                        <ListItem icon onPress={this.goToAllende}>
+                            <Left>
+                                <Icon name="navigate" />
+                            </Left>
+
+                            <Body>
+                            <Text>Calzada de la Estacion 19, Estación F.F.C.C., 37759 San Miguel de Allende, Gto.</Text>
                             </Body>
                             <Right/>
                         </ListItem>

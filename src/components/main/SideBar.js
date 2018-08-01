@@ -124,7 +124,7 @@ export default class ListHeaderExample extends Component {
                             <Icon name="contact" style={{color:'white'}}/>
                         </Left>
                         <Body>
-                        <Text style={{color:'white'}}>Contacto</Text>
+                        <Text style={{color:'white'}}>Acerca de</Text>
                         </Body>
                         <Right>
                             <Icon name={contacto ? "arrow-up":"arrow-down"} />
@@ -132,14 +132,12 @@ export default class ListHeaderExample extends Component {
                     </ListItem>
                     {contacto ?
                         <View style={{backgroundColor:"#555555"}}>
-                            <ListItem >
-                                <Text style={{color:'white'}}>Ubícanos</Text>
-                            </ListItem>
+
                             <ListItem onPress={()=>Actions.contactanos()} >
-                                <Text style={{color:'white'}}>Llamanos</Text>
+                                <Text style={{color:'white'}}>Contactanos</Text>
                             </ListItem>
                             <ListItem onPress={()=>Actions.about()} >
-                                <Text style={{color:'white'}}>Acerca de</Text>
+                                <Text style={{color:'white'}}>¿Qué es Allende?</Text>
                             </ListItem>
                         </View>
                         :null

@@ -1,3 +1,11 @@
 import React,{Component} from 'react'
-import {} from 'react-native'
-import {} from 'native-base'
+import {View,Text} from 'react-native'
+import {Header} from 'native-base'
+
+export default class  Stock extends Component {
+    render(){
+        return(
+
+        );
+    }
+}
