@@ -112,7 +112,7 @@ export default class ListHeaderExample extends Component {
                             <ListItem >
                                 <Text style={{color:'white'}}>Scanner</Text>
                             </ListItem>
-                            <ListItem >
+                            <ListItem onPress={()=> Actions.stock()} >
                                 <Text style={{color:'white'}}>Stock</Text>
                             </ListItem>
                         </View>

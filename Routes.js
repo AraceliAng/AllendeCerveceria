@@ -12,6 +12,7 @@ import ResumenOrden from "./src/components/historial/ResumenOrden";
 import CatalogoMain from "./src/components/catalogo/CatalogoMain";
 import Contactanos from "./src/components/contact/Contactanos";
 import OrdenActiva from "./src/components/ordenactiva/OrdenActiva";
+import Stock from "./src/components/stock/Stock";
 
 const Routes = () => {
     return (
@@ -29,6 +30,7 @@ const Routes = () => {
                     <Scene key="catalogo" header={null} component={CatalogoMain}/>
                     <Scene key="contactanos" header={null} component={Contactanos}/>
                     <Scene key="ordenA" header={null} component={OrdenActiva}/>
+                    <Scene key="stock" header={null} component={Stock}/>
                 </Scene>
             </Router>
         </Root>
