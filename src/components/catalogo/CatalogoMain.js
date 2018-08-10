@@ -6,61 +6,35 @@ import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header
 import fondo from '../../assets/img/allende.jpg'
 import CardProduct from "./CardProduct";
 import {Actions} from "react-native-router-flux";
+import Carrito from "./Carrito";
 
-const MIN_HEIGHT = Header.HEIGHT;
-const MAX_HEIGHT = 250;
 
-const styles = StyleSheet.create({
-
-    section: {
-
-    },
-    titleContainer: {
-        flex: 1,
-        alignSelf: 'stretch',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    imageTitle: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontSize: 24,
-    },
-    navTitleView: {
-        top:14,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: 16,
-        opacity: 0,
-    },
-    navTitle: {
-        color: 'white',
-        fontSize: 18,
-        backgroundColor: 'transparent',
-    },
-    subTitle:{
-        fontSize:16,
-        fontWeight:'bold'
-    },
-});
 
 export default class CatalogoMain extends Component {
-    constructor() {
-        super();
-        this.state = { showNavTitle: false };
+
+    state = {
+        showNavTitle: false,
+        modalVisible: false,
+    }
+
+    openCart=()=>{
+        let {modalVisible}=this.state;
+        modalVisible =! modalVisible
+        this.setState({modalVisible})
     }
 
     render() {
+            let {modalVisible}=this.state;
         return (
             <View style={{ flex: 1 }}>
-
+                <Carrito open={modalVisible} close={this.openCart}/>
                 <View style={{position:'absolute',zIndex:9,marginTop:20}}>
                     <Button transparent onPress={()=>Actions.pop()}>
                         <Icon name='arrow-back' style={{color:'white'}} />
                     </Button>
                 </View>
                 <View style={{position:'absolute',zIndex:9,marginTop:20,right:0}}>
-                    <Button transparent>
+                    <Button transparent onPress={this.openCart}>
                         <Icon name='cart' style={{color:'white'}} />
                     </Button>
                 </View>
@@ -156,3 +130,39 @@ export default class CatalogoMain extends Component {
         );
     }
 }
+const MIN_HEIGHT = Header.HEIGHT;
+const MAX_HEIGHT = 250;
+
+const styles = StyleSheet.create({
+
+    section: {
+
+    },
+    titleContainer: {
+        flex: 1,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imageTitle: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontSize: 24,
+    },
+    navTitleView: {
+        top:14,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 16,
+        opacity: 0,
+    },
+    navTitle: {
+        color: 'white',
+        fontSize: 18,
+        backgroundColor: 'transparent',
+    },
+    subTitle:{
+        fontSize:16,
+        fontWeight:'bold'
+    },
+});

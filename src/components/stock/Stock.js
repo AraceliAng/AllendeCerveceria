@@ -21,18 +21,20 @@ export default class Stock extends Component {
                     <Body >
                     <Title style={{color:'black'}}>Stock</Title>
                     </Body>
-                    <Right/>
+                    <Right>
+                        <Button transparent onPress={()=>Actions.catalogo()}>
+                            <Icon name='cart' style={{color:'black'}} />
+                        </Button>
+                    </Right>
                 </Header>
                 <Content style={{padding:20}}>
                     <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                     <List>
 
-                        <ListItem itemDivider  style={styles.encabezado} >
-                            <Text >Cerveza</Text>
-                            <Text>Total: 100 </Text>
+                        <ListItem itemDivider>
+                            <Text >Allende GOLDEN ALE</Text>
                         </ListItem>
-                        {[0,1,2,3].map((data, i )=>
-                            <ListItem thumbnail key={i}>
+                            <ListItem thumbnail>
                                 <Left>
                                     <Thumbnail square source={caja} />
                                 </Left>
@@ -41,21 +43,19 @@ export default class Stock extends Component {
                                 <Text> </Text>
                                 </Body>
                                 <Right>
-                                    <Text note>Cantidad:</Text>
+                                    <Text note>Unidad:</Text>
                                     <Text>24</Text>
                                 </Right>
                             </ListItem>
 
-                        )
-                        }
 
-                        <ListItem itemDivider style={styles.encabezado} >
-                            <Text style={styles.subTitle}>4 pack Allende</Text>
-                            <Text>Total: 100 </Text>
+                        <ListItem itemDivider>
+                            <Text style={styles.subTitle}>Allende AGAVE LAGER</Text>
+
                         </ListItem>
 
-                        {[0,1,2,3].map((data, i )=>
-                            <ListItem thumbnail key={i}>
+
+                            <ListItem thumbnail>
                                 <Left>
                                     <Thumbnail square source={caja} />
                                 </Left>
@@ -64,21 +64,19 @@ export default class Stock extends Component {
                                 <Text> </Text>
                                 </Body>
                                 <Right>
-                                    <Text note>Cantidad:</Text>
+                                    <Text note>Unidad:</Text>
                                     <Text>24</Text>
                                 </Right>
                             </ListItem>
 
-                        )
-                        }
 
-                        <ListItem itemDivider  style={styles.encabezado}>
-                            <Text style={styles.subTitle}>Caja 24 cervezas</Text>
-                            <Text>Total: 100 </Text>
+                        <ListItem itemDivider >
+                            <Text style={styles.subTitle}>Allende BROWN ALE</Text>
+
                         </ListItem>
 
-                        {[0,1,2,3].map((data, i )=>
-                            <ListItem thumbnail key={i}>
+
+                            <ListItem thumbnail >
                                 <Left>
                                     <Thumbnail square source={caja} />
                                 </Left>
@@ -87,14 +85,31 @@ export default class Stock extends Component {
                                 <Text> </Text>
                                 </Body>
                                 <Right>
-                                    <Text note>Cantidad:</Text>
+                                    <Text note>Unidad:</Text>
                                     <Text>24</Text>
                                 </Right>
                             </ListItem>
 
-                        )
-                        }
 
+                        <ListItem itemDivider >
+                            <Text style={styles.subTitle}>Allende IPA</Text>
+
+                        </ListItem>
+
+
+                        <ListItem thumbnail >
+                            <Left>
+                                <Thumbnail square source={caja} />
+                            </Left>
+                            <Body>
+                            <Text>Chelitas</Text>
+                            <Text> </Text>
+                            </Body>
+                            <Right>
+                                <Text note>Unidad:</Text>
+                                <Text>24</Text>
+                            </Right>
+                        </ListItem>
 
                     </List>
                 </Content>
@@ -108,9 +123,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:'#ebecf2'
     },
-    encabezado:{
-        justifyContent:'space-between'
-    },
+
     title:{
         fontSize:20,
         fontWeight:'bold'

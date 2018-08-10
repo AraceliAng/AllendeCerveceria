@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar} from 'react-native'
+
 import {Root} from 'native-base';
 import {Router, Scene} from 'react-native-router-flux';
 import LoginContainer from './src/components/login/LoginContainer'
@@ -20,7 +20,8 @@ const Routes = () => {
             <Router>
 
                 <Scene key="root">
-                    <Scene key="login" header={null} component={LoginContainer} inital />
+
+                    <Scene key="login" header={null} component={LoginContainer} inital/>
                     <Scene key="main" header={null} component={MainPage} />
                     <Scene key="recovery" header={null} component={Recovery}/>
                     <Scene key="about" header={null} component={AcercaDe}/>
