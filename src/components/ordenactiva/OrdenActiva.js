@@ -27,7 +27,7 @@ export default class OrdenActiva extends Component {
                     <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                     <Card style={{padding:10,position:'relative',zIndex:1}}>
                         <View style={{position:'absolute',backgroundColor:'green',right:0,zIndex:9, width:80,justifyContent:'center',alignItems:'center'}}>
-                            <Text>Activa</Text>
+                            <Text style={{color:'white'}}>Activa</Text>
                         </View>
                         <CardItem style={styles.contentTitle}>
                             <Text style={styles.title}>Promo 100 + caja</Text>

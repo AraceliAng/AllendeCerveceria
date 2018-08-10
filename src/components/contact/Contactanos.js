@@ -121,7 +121,7 @@ export default class Contactanos extends Component {
 
                         <ListItem icon onPress={this.llamame}>
                             <Left>
-                                <Icon name="card" />
+                                <Icon name="call" />
                             </Left>
                             <Body>
                             <Text>+52 (55) 5292 1154</Text>

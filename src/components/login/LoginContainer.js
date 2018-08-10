@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {StyleSheet, Image, View,Text,TouchableOpacity,ImageBackground} from 'react-native';
+import {StyleSheet, Image, View,Text,TouchableOpacity,ImageBackground,StatusBar} from 'react-native';
 import {LoginForm} from './LoginForm'
 import Video from 'react-native-video'
 import {Actions} from 'react-native-router-flux'
@@ -16,6 +16,7 @@ export default class LoginContainer extends Component <Props>{
     render(){
         return(
             <ImageBackground source={require('../../assets/img/chelas.jpg')} style={styles.container}>
+                <StatusBar backgroundColor="black" barStyle="light-content" />
 
                 <View style={styles.logoContainer}>
                     <Text style={styles.title}>Cerveza, Artesanal, Mexicana</Text>

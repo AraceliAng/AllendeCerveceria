@@ -15,9 +15,7 @@ export default class Recovery extends Component <Props>{
                             <Icon name='arrow-back' />
                         </Button>
                     </Left>
-                    <Body style={{ backgroundColor:'red'}}>
-                    <Title >RECUPERAR CONTRASEÑA</Title>
-                    </Body>
+                    <Body/>
                     <Right/>
                 </Header>
 
@@ -36,7 +34,7 @@ export default class Recovery extends Component <Props>{
                             name="correo"
                             placeholder="Correo electrónico"
                             keyboardType='email-address'
-                            style={styles.textito}
+                            style={{color:'black'}}
 
                         />
                     </Item>
@@ -76,8 +74,9 @@ const styles = StyleSheet.create({
     },
     inputs:{
         height:40,
-        backgroundColor:'rgba(255, 255, 255, 0.5)',
+        backgroundColor:'rgba(255, 255, 255, 0.9)',
         marginBottom:20,
+        borderRadius:10
     },
 });
 
