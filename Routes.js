@@ -20,8 +20,9 @@ const Routes = () => {
             <Router>
 
                 <Scene key="root">
+
                     <Scene key="main" header={null} component={MainPage} inital />
-                    <Scene key="login" header={null} component={LoginContainer}  />
+                    <Scene key="login" header={null} component={LoginContainer}   />
                     <Scene key="recovery" header={null} component={Recovery}/>
                     <Scene key="about" header={null} component={AcercaDe}/>
                     <Scene key="profile" header={null} component={ProfilePage}/>

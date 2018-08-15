@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native'
 import {Container,Content,Input,Button,Form,Item,Text} from 'native-base';
 
-export const ProfileForm = ({})=>(
+export const ProfileForm = ({email,address,username,phoneNumber})=>(
 
     <Form style={styles.container}>
         <Text style={styles.textito}>Nombre completo</Text>
@@ -11,6 +11,7 @@ export const ProfileForm = ({})=>(
                 name="name_full"
                 placeholder="Nombre completo"
                 style={styles.inputs}
+                defaultValue={username}
             />
         </Item>
         <Text style={styles.textito}>Correo electrónico</Text>
@@ -20,6 +21,7 @@ export const ProfileForm = ({})=>(
                 placeholder="Correo electrónico"
                 keyboardType='email-address'
                 style={styles.inputs}
+                defaultValue={email}
 
             />
         </Item>
@@ -28,7 +30,7 @@ export const ProfileForm = ({})=>(
             <Input
                 name="phone_cell"
                 placeholder="Numero de telefono"
-                eyboardType='number'
+                defaultValue={phoneNumber}
                 style={styles.inputs}
             />
         </Item>
@@ -38,6 +40,7 @@ export const ProfileForm = ({})=>(
                 name="direcction"
                 placeholder="Dirección"
                 style={styles.inputs}
+                defaultValue={address}
             />
         </Item>
 

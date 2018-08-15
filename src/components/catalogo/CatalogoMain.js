@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Platform,StatusBar, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Platform,StatusBar, ScrollView,AsyncStorage } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {Header,Button,Icon,List,ListItem,Content} from 'native-base'
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
@@ -23,6 +23,7 @@ export default class CatalogoMain extends Component {
 
     componentWillMount(){
         this.setState({caja4:caja4,botella:botella})
+
         getProducts()
             .then(r=>{
                 this.setState({products:r})

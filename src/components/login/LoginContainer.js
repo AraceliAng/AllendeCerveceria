@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {StyleSheet, Image, View,Text,TouchableOpacity,ImageBackground,StatusBar} from 'react-native';
+import {StyleSheet, Image, View, Text, TouchableOpacity, ImageBackground, StatusBar, AsyncStorage} from 'react-native';
 import {Toast } from "native-base";
 import {LoginForm} from './LoginForm'
 import {logIn} from "../../services/AuthService"
@@ -15,6 +15,24 @@ export default class LoginContainer extends Component <Props>{
             password:""
         },
         buttonD:true
+    }
+    componentWillMount(){
+
+        this._retrieveData()
+    }
+    _retrieveData = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+
+            if(token){
+                console.log("hay usuario",token)
+                Actions.main();
+            }else{
+                console.log("no hay nada")
+            }
+        } catch (error) {
+            // Error retrieving data
+        }
     }
 
     login=()=>{
@@ -120,3 +138,20 @@ const styles = StyleSheet.create({
 
 })
 
+/*
+ _retrieveData = async () => {
+        try {
+            const user = await AsyncStorage.getItem('user');
+            let newUser = JSON.parse(user)
+            if(newUser){
+                console.log("hay usuario",newUser)
+                Actions.main();
+            }else{
+                console.log("no hay nada")
+            }
+        } catch (error) {
+            // Error retrieving data
+        }
+    }
+
+ */

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet,View} from 'react-native';
+import {StyleSheet,View,Alert,AsyncStorage} from 'react-native';
 import { Container, Header, Content, List, ListItem, Text,Body,Title,Left,Thumbnail,Right,Button,Icon } from 'native-base';
 import logo from'../../assets/img/logoallende.png';
 import {Actions} from 'react-native-router-flux'
@@ -17,11 +17,35 @@ export default class ListHeaderExample extends Component {
 
         this.setState({miTienda ,admin:false,contacto:false,inventario:false})
     }
+    noUser=()=>{
+        const message = 'Si quieres acceder a este apartado';
+        Alert.alert(
+            '¡Inicia sessión!',
+            message,
+            [
+                {
+                    text: 'Ir',
+                    onPress:Actions.login
+                },
+                {
+                    text: 'Cancelar',
+                    onPress: null
+                }
+            ]
+        )
+    }
     admin=()=>{
-        let {admin}=this.state;
-        admin =! admin
+        if (!this.props.logged ){
+            this.noUser()
+        }else{
+            let {admin}=this.state;
+            admin =! admin
 
-        this.setState({admin,miTienda:false,contacto:false,inventario:false})
+            this.setState({admin,miTienda:false,contacto:false,inventario:false})
+        }
+
+
+
     }
     contacto=()=>{
         let {contacto}=this.state;
@@ -30,15 +54,27 @@ export default class ListHeaderExample extends Component {
         this.setState({contacto,admin:false,miTienda:false,inventario:false})
     }
     invent=()=>{
-        let {inventario}=this.state;
-        inventario =! inventario
+        if (!this.props.logged ){
+            this.noUser()
+        }else{
+            let {inventario}=this.state;
+            inventario =! inventario
+            this.setState({inventario,contacto:false,admin:false,miTienda:false})
+        }
 
-        this.setState({inventario,contacto:false,admin:false,miTienda:false})
+    }
+
+    logOut=()=>{
+        AsyncStorage.removeItem("user");
+        AsyncStorage.removeItem("token");
+        Actions.login()
+
     }
 
     render() {
 
         let {miTienda,admin,contacto,inventario}=this.state;
+
         return (
             <Container style={{backgroundColor:"rgba(0,0,0,0.8)",flex:1}}>
 
@@ -71,6 +107,7 @@ export default class ListHeaderExample extends Component {
 
                             </View>
                             : null}
+
                     <ListItem icon onPress={this.admin}>
                         <Left>
                             <Icon name="paper" style={{color:'white'}}/>
@@ -144,9 +181,17 @@ export default class ListHeaderExample extends Component {
                     }
                 </Content>
                 <View style={styles.boton}>
-                    <Button full bordered light>
-                        <Text>CERRAR SESIÓN</Text>
-                    </Button>
+                    {!this.props.logged ?
+                        <Button full bordered light onPress={()=>Actions.login()}>
+                            <Text>INICIAR SESIÓN</Text>
+                        </Button>
+                        :
+                        <Button full bordered light onPress={this.logOut}>
+                            <Text>CERRAR SESIÓN</Text>
+                        </Button>
+
+                    }
+
                     <Text style={{fontSize:12, color:'white',marginTop:20 }}>Términos y condiciones</Text>
                 </View>
 
