@@ -4,17 +4,33 @@ import * as Animatable from 'react-native-animatable';
 import {Header,Button,Icon,List,ListItem,Content} from 'native-base'
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import fondo from '../../assets/img/allende.jpg'
-import CardProduct from "./CardProduct";
+import {CardProduct} from "./CardProduct";
 import {Actions} from "react-native-router-flux";
 import Carrito from "./Carrito";
-
+import {getProducts} from '../../services/ProductoServices'
+import {botella, caja4} from '../../assets/DataProducts'
 
 
 export default class CatalogoMain extends Component {
 
     state = {
+        botella:[],
+        caja4:[],
+        products:[],
         showNavTitle: false,
         modalVisible: false,
+    }
+
+    componentWillMount(){
+        this.setState({caja4:caja4,botella:botella})
+        getProducts()
+            .then(r=>{
+                this.setState({products:r})
+
+            }).catch(e=>{
+            console.log(e)
+        })
+
     }
 
     openCart=()=>{
@@ -24,7 +40,8 @@ export default class CatalogoMain extends Component {
     }
 
     render() {
-            let {modalVisible}=this.state;
+            let {modalVisible,products,caja4,botella}=this.state;
+            console.log('botella',botella)
         return (
             <View style={{ flex: 1 }}>
                 <Carrito open={modalVisible} close={this.openCart}/>
@@ -79,48 +96,39 @@ export default class CatalogoMain extends Component {
 
                         <List>
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
-                                {[0,1,2,3].map((chelas, i)=>
-                                    <View key={i} View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
+                                {botella.map((product,key)=>
+                                    <View View style={{ width:200, marginLeft:20}}>
+                                        <CardProduct {...product} key={key}/>
                                     </View>
-                                )}
 
+                                )}
                             </ScrollView>
 
                             <ListItem itemDivider >
                                 <Text style={styles.subTitle}>4 Pack Allende:</Text>
                             </ListItem>
-                            <ScrollView  horizontal={true} style={{marginBottom:10}}>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
 
+
+                            <ScrollView  horizontal={true} style={{marginBottom:10}}>
+                                {caja4.map((product,key)=>
+                                    <View View style={{ width:200, marginLeft:20}}>
+                                        <CardProduct {...product} key={key}/>
+                                    </View>
+
+                                )}
                             </ScrollView>
                             <ListItem itemDivider>
                                 <Text style={styles.subTitle}>Caja 24 cervezas:</Text>
                             </ListItem>
+
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
-                                <View View style={{ width:200, marginLeft:20}}>
-                                    <CardProduct/>
-                                </View>
+
+                                {products.map((product,key)=>
+                                    <View View style={{ width:200, marginLeft:20}}>
+                                        <CardProduct {...product} key={key}/>
+                                    </View>
+
+                                )}
 
                             </ScrollView>
 

@@ -1,18 +1,60 @@
 import React, {Component} from 'react'
 import {StyleSheet, Image, View,Text,TouchableOpacity,ImageBackground,StatusBar} from 'react-native';
+import {Toast } from "native-base";
 import {LoginForm} from './LoginForm'
-import Video from 'react-native-video'
+import {logIn} from "../../services/AuthService"
 import {Actions} from 'react-native-router-flux'
 
 type Props ={};
 
 
 export default class LoginContainer extends Component <Props>{
-
+    state={
+        login:{
+            email:"",
+            password:""
+        },
+        buttonD:true
+    }
 
     login=()=>{
-        Actions.main()
+       // Actions.main()
+        let {login,buttonD} = this.state;
+       if(login.email.length == 0){
+
+           console.log("no se puede",login)
+       }else{
+           logIn(login)
+               .then(r => {
+                   Actions.main()
+                   Toast.show({
+                       text: "Bienvenido!",
+                       position: "top",
+                       type: "success"
+                   })
+                   console.log("si se pudo")
+               })
+               .catch(error => {
+                   Toast.show({
+                       text: "Error!",
+                       position: "top",
+                       type: "danger"
+                   })
+                   console.log(error);
+               })
+       }
+
+
+
+        // console.log("Datos",this.state.login)
     }
+    handleChange = (field, value) => {
+        let {login} = this.state;
+        login[field] = value;
+        this.setState({login});
+
+    };
+
     render(){
         return(
             <ImageBackground source={require('../../assets/img/chelas.jpg')} style={styles.container}>
@@ -22,7 +64,7 @@ export default class LoginContainer extends Component <Props>{
                     <Text style={styles.title}>Cerveza, Artesanal, Mexicana</Text>
                 </View>
 
-                    <LoginForm login={this.login}/>
+                    <LoginForm onChange={this.handleChange} onSubmit={this.login} />
                 <View style={styles.textos}>
                     <TouchableOpacity onPress={()=>Actions.recovery()}>
                         <Text style={styles.textito}>¿Olvidaste tu contraseña?</Text>

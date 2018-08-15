@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {StatusBar,Platform, StyleSheet, Image, View} from 'react-native'
 import {  Container, Header,Title, Content, Card, CardItem, Thumbnail, Text,H1, Button, Icon, Left, Body, Right,Badge } from 'native-base';
-import fondo from '../../assets/img/allende.jpg'
-import logo from '../../assets/img/logo.png'
+
 import caja from '../../assets/img/caja.jpg'
-import paquete from '../../assets/img/caja4.jpg'
-import cerveza from '../../assets/img/cerveza1.jpg'
+
 import {Actions} from "react-native-router-flux";
 
 export default class OrdenActiva extends Component {
@@ -40,8 +38,8 @@ export default class OrdenActiva extends Component {
                                     <Text>2</Text>
                                 </Badge>
                             </View>
-                            <Thumbnail square source={paquete} style={styles.imagencitas}/>
-                            <Thumbnail square source={cerveza} style={styles.imagencitas}/>
+                            <Thumbnail square source={caja} style={styles.imagencitas}/>
+                            <Thumbnail square source={caja} style={styles.imagencitas}/>
 
                         </CardItem>
                         <CardItem style={{justifyContent:'flex-end'}}>

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {StatusBar, StyleSheet, Platform, View} from 'react-native'
 import {  Container, Header,Title, Content, Button, Icon, Left, Body, Right, List, ListItem,Text,Thumbnail} from 'native-base';
 import caja from '../../assets/img/caja.jpg'
-import paquete from '../../assets/img/caja4.jpg'
-import cerveza from '../../assets/img/cerveza1.jpg'
+
 import {Actions} from "react-native-router-flux";
 
 export default class ResumenOrden extends Component {
@@ -42,7 +41,7 @@ export default class ResumenOrden extends Component {
 
                         </ListItem>
                         <ListItem>
-                            <Thumbnail  square size={80} source={paquete} />
+                            <Thumbnail  square size={80} source={caja} />
 
                             <Body>
                             <Text style={{fontSize:16}}>4 Pack Allende Golden Ale</Text>
@@ -52,7 +51,7 @@ export default class ResumenOrden extends Component {
 
                         </ListItem>
                         <ListItem>
-                            <Thumbnail  square size={80} source={cerveza} />
+                            <Thumbnail  square size={80} source={caja} />
 
                             <Body>
                             <Text style={{fontSize:16}}>Allende Golden Ale</Text>

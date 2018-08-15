@@ -4,8 +4,6 @@ import { ListItem,List, Container, Header,Title, Content, Card, CardItem, Thumbn
 import fondo from '../../assets/img/allende.jpg'
 import logo from '../../assets/img/logo.png'
 import caja from '../../assets/img/caja.jpg'
-import paquete from '../../assets/img/caja4.jpg'
-import cerveza from '../../assets/img/cerveza1.jpg'
 import {Actions} from "react-native-router-flux";
 
 export default class Stock extends Component {

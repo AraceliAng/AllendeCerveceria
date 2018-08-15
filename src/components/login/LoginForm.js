@@ -3,17 +3,17 @@ import {StyleSheet} from 'react-native'
 import {Container,Content,Input,Button,Form,Item,Text} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const LoginForm = ({login})=>(
+export const LoginForm = ({onChange,onSubmit,buttonD})=>(
 
             <Form style={styles.container}>
                 <Item regular style={styles.inputs}>
                     <Icon active name='user' size={15}  style={{marginLeft:12}} />
                     <Input
-                        name="correo"
+                        name="email"
                         placeholder="Correo electrónico"
                         keyboardType='email-address'
                         style={styles.textito}
-
+                        onChangeText={value=>onChange("email",value)}
                     />
                 </Item>
                 <Item regular style={styles.inputs}>
@@ -23,9 +23,10 @@ export const LoginForm = ({login})=>(
                         placeholder="Contraseña"
                         secureTextEntry={true}
                         style={styles.textito}
+                        onChangeText={value=>onChange("password",value)}
                     />
                 </Item>
-                <Button full bordered light onPress={login} style={{borderRadius:10}}>
+                <Button full bordered light onPress={onSubmit} style={{borderRadius:10}}>
                     <Text>Entrar</Text>
                 </Button>
             </Form>
