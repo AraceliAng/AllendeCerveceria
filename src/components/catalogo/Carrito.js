@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import {Modal, TouchableHighlight, View,StatusBar,Text,StyleSheet,Platform,ScrollView,ImageBackground} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import {Header,Button,Icon,List,ListItem,Content,Left,Right,Body,Thumbnail,Card} from 'native-base'
-import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
-import fondo from '../../assets/img/allende.jpg'
-import CardProduct from "./CardProduct";
+import {Modal, TouchableOpacity, View,StatusBar,Text,StyleSheet} from 'react-native';
+import {Header,Button,Icon,List,ListItem,Content,Left,Right,Body,Thumbnail,Card,CardItem} from 'native-base'
 import caja from '../../assets/img/caja.jpg'
 export default class Carrito extends Component {
 
 
     render() {
+                let {cart,addMore,removeToCart, total,vaciar}=this.props;
+                console.log("cart",total)
         return (
 
                 <Modal
@@ -20,7 +18,7 @@ export default class Carrito extends Component {
                         alert('Modal has been closed.');
                     }}>
                     <View style={{ flex: 1 }}>
-                        <TouchableHighlight onPress={this.props.close}>
+                        <TouchableOpacity onPress={this.props.close}>
                             <Header transparent style={{backgroundColor:"rgba(0,0,0,0.2)"}} >
                                 <Left />
                                 <Body/>
@@ -30,7 +28,7 @@ export default class Carrito extends Component {
                                     </Button>
                                 </Right>
                             </Header>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
 
                         <StatusBar backgroundColor="black" barStyle="light-content" />
 
@@ -38,49 +36,72 @@ export default class Carrito extends Component {
                             <ListItem itemHeader first>
                                 <Body>
                                 <Text note>Total: </Text>
-                                <Text style={styles.cantTotal}>$40.00</Text>
+                                <Text style={styles.cantTotal}>${total}</Text>
                                 </Body>
                             </ListItem>
                         </List>
                         <Content style={{backgroundColor:'white',flex:3}}>
-                            <List>
-                                {[0,1,2,3].map((chelas, i)=>
-                                <ListItem thumbnail  key={i}>
-                                    <Left>
-                                        <Thumbnail square source={caja} />
-                                    </Left>
-                                    <Body>
-                                        <Text style={styles.subTitle}>Allende AGAVE LAGER</Text>
-                                        <Text note>355 mL</Text>
-                                        <Text >$37.00</Text>
-                                    </Body>
-                                    <Right>
-                                        <Card style={styles.boton}>
+                            {
+                                cart.length > 0 ?
+                                    <View>
+                                        <List>
+                                            {cart.map((chelas, i)=>
+                                                <ListItem thumbnail  key={i}>
+                                                    <Left>
+                                                        <Thumbnail square source={caja} />
+                                                    </Left>
+                                                    <Body>
+                                                    <Text style={styles.subTitle}>Allende {chelas.name}</Text>
+                                                    <Text note>Caja 24 cervezas</Text>
+                                                    <Text >Precio uni: ${chelas.price}</Text>
+                                                    <Text note>Total x cant: ${chelas.tot}</Text>
+                                                    </Body>
+                                                    <Right>
+                                                        <Card style={styles.boton}>
 
-                                            <TouchableHighlight style={{marginRight:10}}><Text>-</Text></TouchableHighlight>
-                                            <Text>1</Text>
-                                            <TouchableHighlight style={{marginLeft:10}}><Text>+</Text></TouchableHighlight>
+                                                            <TouchableOpacity style={{marginRight:10}} onPress={()=>removeToCart(chelas)}><Text>-</Text></TouchableOpacity>
+                                                            <Text>{chelas.cant}</Text>
+                                                            <TouchableOpacity style={{marginLeft:10}} onPress={()=>addMore(chelas)}><Text>+</Text></TouchableOpacity>
 
-                                        </Card>
+                                                        </Card>
 
-                                    </Right>
-                                </ListItem>
-                                )}
-                            </List>
+                                                    </Right>
+                                                </ListItem>
+                                            )}
+                                        </List>
 
 
-                            <View style={{justifyContent:'center',alignItems:'center',marginTop:20}}>
-                                <TouchableHighlight>
-                                    <Text style={styles.textito}>Vaciar orden</Text>
-                                </TouchableHighlight>
-                            </View>
+                                        <View style={{justifyContent:'center',alignItems:'center',marginTop:20}}>
+                                            <TouchableOpacity onPress={vaciar}>
+                                                <Text style={styles.textito}>Vaciar orden</Text>
+                                            </TouchableOpacity>
+                                        </View>
+
+                                    </View>
+                                :
+
+
+                                    <Card transparent style={{padding:20,top:50}}>
+                                        <CardItem>
+                                            <Body style={{justifyContent:'center',alignItems:'center'}}>
+                                            <Text note >
+                                                Tu carrito está vacio.
+                                            </Text>
+                                            <Text note>
+                                                Regresa al catalogo para agregar productos.
+                                            </Text>
+                                            </Body>
+                                        </CardItem>
+                                    </Card>
+                                }
+
 
 
 
                         </Content>
                         <View style={{backgroundColor:'white', padding:15}}>
-                            <Button  bordered dark block>
-                                <Text>Agendar orden</Text>
+                            <Button  bordered block style={{borderColor:'#d59a12'}} >
+                                <Text style={{color:'#d59a12'}}>Agendar orden</Text>
                             </Button>
                         </View>
 

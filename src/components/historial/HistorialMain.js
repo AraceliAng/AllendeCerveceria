@@ -35,8 +35,8 @@ export default class HistorialMain extends Component {
                                     <Text>2</Text>
                                 </Badge>
                             </View>
-                            <Thumbnail square source={paquete} style={styles.imagencitas}/>
-                            <Thumbnail square source={cerveza} style={styles.imagencitas}/>
+                            <Thumbnail square source={caja} style={styles.imagencitas}/>
+                            <Thumbnail square source={caja} style={styles.imagencitas}/>
 
                         </CardItem>
                         <CardItem style={{justifyContent:'flex-end'}}>
@@ -78,7 +78,7 @@ export default class HistorialMain extends Component {
 
                             <Thumbnail square source={caja}  style={styles.imagencitas}/>
                             <View>
-                                <Thumbnail square source={cerveza} style={styles.imagencitas}/>
+                                <Thumbnail square source={caja} style={styles.imagencitas}/>
                                 <Badge style={{top:-10,right:0,position:'absolute',zIndex:9}}>
                                     <Text>2</Text>
                                 </Badge>

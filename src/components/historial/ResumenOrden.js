@@ -15,20 +15,18 @@ export default class ResumenOrden extends Component {
                             <Icon name='arrow-back' style={{color:'black'}}/>
                         </Button>
                     </Left>
-                    <Body >
-                    <Title style={{color:'black'}}>Resumen de orden</Title>
-                    </Body>
+                    <Body/>
                     <Right/>
                 </Header>
                 <Content>
                     <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                     <List>
                         <ListItem style={styles.contentTitle}>
-                            <Text style={styles.title}>Promo 100 + caja </Text>
+                            <Text style={styles.title}>Resumen de orden</Text>
                             <Text note>Total: $1,856.00</Text>
                         </ListItem>
                         <ListItem itemDivider>
-                            <Text style={styles.subTitle}>Resumen:</Text>
+                            <Text style={styles.subTitle}>Detalle:</Text>
                         </ListItem>
                         <ListItem>
                             <Thumbnail  square size={80} source={caja} />
@@ -61,31 +59,13 @@ export default class ResumenOrden extends Component {
 
                         </ListItem>
                         <ListItem itemDivider>
-                            <Text style={styles.subTitle}>Método de pago</Text>
-                        </ListItem>
-                        <ListItem>
-                                <Icon name="card" />
-                            <Body>
-                                <Text>Tarjeta de Crédito</Text>
-                            </Body>
-                            <Right/>
-                        </ListItem>
-                        <ListItem itemDivider>
                             <Text style={styles.subTitle}>Costo:</Text>
                         </ListItem>
                         <ListItem >
                             <Body>
-                                <Text style={{fontSize:16,marginBottom:10}}>Subtotal:</Text>
-                                <Text style={{fontSize:15,marginBottom:10}}>Descuento:</Text>
-                                <Text style={{fontSize:15,marginBottom:10}}>Envío:</Text>
-                                <Text style={{fontSize:15,marginBottom:10}}>Descuento de envío:</Text>
                                 <Text style={{fontSize:16, fontWeight:'bold'}}>Total:</Text>
                             </Body>
                             <Body style={{alignItems:'flex-end'}}>
-                            <Text style={{fontSize:16,marginBottom:10}}>$1,856.00</Text>
-                            <Text style={{fontSize:15,marginBottom:10}}>$0.00</Text>
-                            <Text style={{fontSize:15,marginBottom:10}}>$0.00</Text>
-                            <Text style={{fontSize:15,marginBottom:10}}>$0.00</Text>
                             <Text style={{fontSize:16, fontWeight:'bold'}}>$1,856.00</Text>
                             </Body>
 

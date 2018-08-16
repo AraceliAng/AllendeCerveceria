@@ -5,7 +5,7 @@ import {Actions} from "react-native-router-flux";
 
 import {StyleSheet,Image,View} from "react-native";
 
-export const CardProduct =({image,name,price})=>(
+export const CardProduct =({image,name,price,item,addToCart})=>(
     <Card style={{flex:0,padding:10}}>
 
         <CardItem cardBody style={{flexDirection:'column'}}>
@@ -22,7 +22,7 @@ export const CardProduct =({image,name,price})=>(
             </Body>
         </CardItem>
         <CardItem style={{justifyContent:'center'}}>
-            <Button  bordered dark>
+            <Button  bordered style={{borderColor:'#d59a12'}} onPress={()=>addToCart(item)}>
                 <Text style={styles.textito}>Agregar</Text>
             </Button>
         </CardItem>
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     },
     textito:{
         fontSize:12,
+        color:'#d59a12'
     },
     imagencitas:{
         marginRight:10
