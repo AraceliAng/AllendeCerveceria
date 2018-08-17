@@ -6,7 +6,7 @@ import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header
 import fondo from '../../assets/img/allende.jpg'
 import {CardProduct} from "./CardProduct";
 import {Actions} from "react-native-router-flux";
-import Carrito from "./Carrito";
+import {Carrito} from "./Carrito";
 import {getProducts} from '../../services/ProductoServices'
 import {botella, caja4} from '../../assets/DataProducts'
 
@@ -22,10 +22,12 @@ export default class CatalogoMain extends Component {
         products:[],
         showNavTitle: false,
         modalVisible: false,
-        total:0
+        total:0,
+        user:{}
     }
 
     componentWillMount(){
+        this._retrieveData()
         this.setState({caja4:caja4,botella:botella})
 
         getProducts()
@@ -36,6 +38,21 @@ export default class CatalogoMain extends Component {
             console.log(e)
         })
 
+    }
+
+    _retrieveData = async () => {
+        try {
+            const userLocal = await AsyncStorage.getItem('user');
+            let user = JSON.parse(userLocal)
+            if(user){
+                console.log("hay usuario",user)
+                this.setState({user:user})
+            }else{
+                console.log("no hay nada")
+            }
+        } catch (error) {
+            // Error retrieving data
+        }
     }
 
 
@@ -135,6 +152,26 @@ export default class CatalogoMain extends Component {
         modalVisible =! modalVisible
         this.setState({modalVisible})
     }
+    //crear oden
+
+    createOrdern =()=>{
+        let {carrito,total,user}= this.state;
+        var or = {
+            idUser:user._id,
+            username:user.username,
+            porducts:carrito,
+            pagar:total,
+        }
+        console.log("ya esta tu orden",or)
+        this.deleteCarrit()
+        Toast.show({
+            text: "Tu orden se ha creado",
+            position: "top",
+            type: "success"
+        })
+
+
+    }
 
     render() {
             let {modalVisible,products,caja4,botella,carrito}=this.state;
@@ -147,6 +184,7 @@ export default class CatalogoMain extends Component {
                          addMore={this.addToCart}
                          total={this.state.total}
                          vaciar={this.deleteCarrit}
+                         createOrden={this.createOrdern}
                 />
                 <View style={{position:'absolute',zIndex:9,marginTop:20}}>
                     <Button transparent onPress={()=>Actions.pop()}>

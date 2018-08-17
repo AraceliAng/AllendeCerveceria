@@ -2,35 +2,31 @@ import React, {Component} from 'react';
 import {Modal, TouchableOpacity, View,StatusBar,Text,StyleSheet} from 'react-native';
 import {Header,Button,Icon,List,ListItem,Content,Left,Right,Body,Thumbnail,Card,CardItem} from 'native-base'
 import caja from '../../assets/img/caja.jpg'
-export default class Carrito extends Component {
 
 
-    render() {
-                let {cart,addMore,removeToCart, total,vaciar}=this.props;
-                console.log("cart",total)
-        return (
+export const Carrito =({cart,addMore,removeToCart, total,vaciar,open,close,createOrden})=>(
 
                 <Modal
                     animationType="slide"
                     transparent={true}
-                    visible={this.props.open}
+                    visible={open}
                     onRequestClose={() => {
                         alert('Modal has been closed.');
                     }}>
                     <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.props.close}>
+                        <TouchableOpacity onPress={close}>
                             <Header transparent style={{backgroundColor:"rgba(0,0,0,0.2)"}} >
                                 <Left />
                                 <Body/>
                                 <Right>
-                                    <Button transparent onPress={this.props.close}>
+                                    <Button transparent onPress={close}>
                                         <Icon name='close-circle' style={{color:'white'}} />
                                     </Button>
                                 </Right>
                             </Header>
                         </TouchableOpacity>
 
-                        <StatusBar backgroundColor="black" barStyle="light-content" />
+                        <StatusBar backgroundColor="black" barStyle="light-content" />{}
 
                         <List style={{backgroundColor:'white'}}>
                             <ListItem itemHeader first>
@@ -88,7 +84,7 @@ export default class Carrito extends Component {
                                                 Tu carrito está vacio.
                                             </Text>
                                             <Text note>
-                                                Regresa al catalogo para agregar productos.
+                                                Regresa al catálogo para agregar productos.
                                             </Text>
                                             </Body>
                                         </CardItem>
@@ -99,18 +95,23 @@ export default class Carrito extends Component {
 
 
                         </Content>
-                        <View style={{backgroundColor:'white', padding:15}}>
-                            <Button  bordered block style={{borderColor:'#d59a12'}} >
-                                <Text style={{color:'#d59a12'}}>Agendar orden</Text>
-                            </Button>
-                        </View>
+                        { cart.length > 0 ?
+
+                            <View style={{backgroundColor:'white', padding:15}}>
+                                <Button  bordered block style={{borderColor:'#d59a12'}} onPress={createOrden} >
+                                    <Text style={{color:'#d59a12'}}>Agendar orden</Text>
+                                </Button>
+                            </View>
+
+                            :
+                            null
+                        }
+
 
 
                     </View>
                 </Modal>
-        );
-    }
-}
+        )
 
 
 const styles = StyleSheet.create({
