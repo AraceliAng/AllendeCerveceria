@@ -13,6 +13,7 @@ import CatalogoMain from "./src/components/catalogo/CatalogoMain";
 import Contactanos from "./src/components/contact/Contactanos";
 import OrdenActiva from "./src/components/ordenactiva/OrdenActiva";
 import Stock from "./src/components/stock/Stock";
+import ReaderQr from "./src/components/stock/ReaderQr";
 
 const Routes = () => {
     return (
@@ -32,6 +33,7 @@ const Routes = () => {
                     <Scene key="contactanos" header={null} component={Contactanos}/>
                     <Scene key="ordenA" header={null} component={OrdenActiva}/>
                     <Scene key="stock" header={null} component={Stock}/>
+                    <Scene key="readqr" header={null} component={ReaderQr}/>
                 </Scene>
             </Router>
         </Root>

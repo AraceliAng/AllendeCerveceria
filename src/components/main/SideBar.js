@@ -35,14 +35,14 @@ export default class ListHeaderExample extends Component {
         )
     }
     admin=()=>{
-        if (!this.props.logged ){
-            this.noUser()
-        }else{
+       // if (!this.props.logged ){
+        //    this.noUser()
+        //}else{
             let {admin}=this.state;
             admin =! admin
 
             this.setState({admin,miTienda:false,contacto:false,inventario:false})
-        }
+        //}
 
 
 
@@ -54,13 +54,13 @@ export default class ListHeaderExample extends Component {
         this.setState({contacto,admin:false,miTienda:false,inventario:false})
     }
     invent=()=>{
-        if (!this.props.logged ){
-            this.noUser()
-        }else{
+       // if (!this.props.logged ){
+        //    this.noUser()
+        //}else{
             let {inventario}=this.state;
             inventario =! inventario
             this.setState({inventario,contacto:false,admin:false,miTienda:false})
-        }
+      //  }
 
     }
 
@@ -146,7 +146,7 @@ export default class ListHeaderExample extends Component {
                     </ListItem>
                     {inventario ?
                         <View style={{backgroundColor:"#555555"}}>
-                            <ListItem >
+                            <ListItem onPress={()=> Actions.readqr()}>
                                 <Text style={{color:'white'}}>Scanner</Text>
                             </ListItem>
                             <ListItem onPress={()=> Actions.stock()} >
