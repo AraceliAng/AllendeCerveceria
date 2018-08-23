@@ -21,7 +21,18 @@ export default class ReaderQr extends Component {
         }
     }
 
-    onBarCodeRead = (e) => this.setState({qrcode: e.data});
+    onBarCodeRead = (e) =>{
+        console.log("que es esto",e)
+        let datos = JSON.parse(e.data)
+        if(datos.orden){
+            Actions.resumen()
+        }else{
+            console.log("datitos",datos)
+            this.setState({qrcode: e.data})
+        }
+
+
+    };
     render() {
         return (
             <View style={styles.container}>

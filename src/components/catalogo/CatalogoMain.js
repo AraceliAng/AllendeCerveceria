@@ -250,7 +250,7 @@ export default class CatalogoMain extends Component {
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
                                 {botella.map((product,index)=>
 
-                                    <View View style={{ width:200, marginLeft:20}}>
+                                    <View View style={{ width:200, marginLeft:20}} key={index} >
                                         <CardProduct {...product} key={index} item={product} addToCart={this.addToCart}/>
                                     </View>
 
@@ -265,8 +265,8 @@ export default class CatalogoMain extends Component {
 
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
                                 {caja4.map((product,index)=>
-                                    <View View style={{ width:200, marginLeft:20}}>
-                                        <CardProduct {...product} key={index} item={product} addToCart={this.addToCart}/>
+                                    <View View style={{ width:200, marginLeft:20}} key={index} >
+                                        <CardProduct {...product} item={product} addToCart={this.addToCart}/>
                                     </View>
 
                                 )}
@@ -278,8 +278,8 @@ export default class CatalogoMain extends Component {
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
 
                                 {products.map((product,index)=>
-                                    <View View style={{ width:200, marginLeft:20}}>
-                                        <CardProduct {...product} key={index} item={product} addToCart={this.addToCart}/>
+                                    <View View style={{ width:200, marginLeft:20}} key={index} >
+                                        <CardProduct {...product}  item={product} addToCart={this.addToCart}/>
                                     </View>
 
                                 )}
