@@ -5,10 +5,10 @@ import {Actions} from "react-native-router-flux";
 
 import {StyleSheet,Image,View} from "react-native";
 
-export const CardProduct =({image,name,price,item,addToCart})=>(
+export const CardProduct =({image,name,price,item,addToCart,open,detalle})=>(
     <Card style={{flex:0,padding:10}}>
 
-        <CardItem cardBody style={{flexDirection:'column'}}>
+        <CardItem cardBody button style={{flexDirection:'column'}} onPress={()=>open(detalle)}>
             <Image source={{uri:image}} style={{height: 120, width: 120, flex: 1}}/>
 
 

@@ -9,6 +9,7 @@ import {Actions} from "react-native-router-flux";
 import {Carrito} from "./Carrito";
 import {getProducts} from '../../services/ProductoServices'
 import {botella, caja4} from '../../assets/DataProducts'
+import {DetalleCerveza} from "./DetalleCerveza";
 
 const MIN_HEIGHT = Header.HEIGHT;
 const MAX_HEIGHT = 250;
@@ -23,7 +24,9 @@ export default class CatalogoMain extends Component {
         showNavTitle: false,
         modalVisible: false,
         total:0,
-        user:{}
+        user:{},
+        modalDetalle:false,
+        detalle:{}
     }
 
     componentWillMount(){
@@ -163,18 +166,25 @@ export default class CatalogoMain extends Component {
             pagar:total,
         }
         console.log("ya esta tu orden",or)
+        Actions.resumen()
         this.deleteCarrit()
         Toast.show({
             text: "Tu orden se ha creado",
             position: "top",
             type: "success"
         })
+    }
 
-
+    openDetalle = (a)=>{
+        this.setState({modalDetalle:true,detalle:a})
+        console.log(a)
+    }
+    closeDetalle = ()=>{
+        this.setState({modalDetalle:false,detalle:{}})
     }
 
     render() {
-            let {modalVisible,products,caja4,botella,carrito}=this.state;
+            let {modalVisible,products,caja4,botella,carrito,modalDetalle,detalle}=this.state;
         return (
             <View style={{ flex: 1 }}>
                 <Carrito open={modalVisible}
@@ -185,6 +195,11 @@ export default class CatalogoMain extends Component {
                          total={this.state.total}
                          vaciar={this.deleteCarrit}
                          createOrden={this.createOrdern}
+                />
+                <DetalleCerveza open={modalDetalle}
+                                close={this.closeDetalle}
+                                {...detalle}
+
                 />
                 <View style={{position:'absolute',zIndex:9,marginTop:20}}>
                     <Button transparent onPress={()=>Actions.pop()}>
@@ -251,7 +266,7 @@ export default class CatalogoMain extends Component {
                                 {botella.map((product,index)=>
 
                                     <View View style={{ width:200, marginLeft:20}} key={index} >
-                                        <CardProduct {...product} key={index} item={product} addToCart={this.addToCart}/>
+                                        <CardProduct {...product} key={index} item={product} addToCart={this.addToCart} open={this.openDetalle}/>
                                     </View>
 
 
@@ -266,7 +281,7 @@ export default class CatalogoMain extends Component {
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
                                 {caja4.map((product,index)=>
                                     <View View style={{ width:200, marginLeft:20}} key={index} >
-                                        <CardProduct {...product} item={product} addToCart={this.addToCart}/>
+                                        <CardProduct {...product} item={product} addToCart={this.addToCart} open={this.openDetalle}/>
                                     </View>
 
                                 )}
@@ -279,7 +294,7 @@ export default class CatalogoMain extends Component {
 
                                 {products.map((product,index)=>
                                     <View View style={{ width:200, marginLeft:20}} key={index} >
-                                        <CardProduct {...product}  item={product} addToCart={this.addToCart}/>
+                                        <CardProduct {...product}  item={product} addToCart={this.addToCart} open={this.openDetalle}/>
                                     </View>
 
                                 )}
