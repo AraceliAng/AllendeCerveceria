@@ -159,6 +159,17 @@ export const botella = [
 ]
 
 
+export const orden = [
+    {
+        id:1,
+        image:'',
+        checked:true,
+        orden:'',
+
+    }
+]
+
+
 
 
 

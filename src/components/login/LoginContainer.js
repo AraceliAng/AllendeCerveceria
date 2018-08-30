@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet, Image, View, Text, TouchableOpacity, ImageBackground, StatusBar, AsyncStorage} from 'react-native';
-import {Toast } from "native-base";
+import {Toast,Button } from "native-base";
 import {LoginForm} from './LoginForm'
 import {logIn} from "../../services/AuthService"
 import {Actions} from 'react-native-router-flux'
@@ -39,7 +39,11 @@ export default class LoginContainer extends Component <Props>{
        // Actions.main()
         let {login,buttonD} = this.state;
        if(login.email.length == 0){
-
+           Toast.show({
+               text: "Llena los campos!",
+               position: "top",
+               type: "danger"
+           })
            console.log("no se puede",login)
        }else{
            logIn(login)
@@ -82,8 +86,12 @@ export default class LoginContainer extends Component <Props>{
                     <Text style={styles.title}>Cerveza, Artesanal, Mexicana</Text>
                 </View>
 
-                    <LoginForm onChange={this.handleChange} onSubmit={this.login} />
+                    <LoginForm onChange={this.handleChange}/>
+
                 <View style={styles.textos}>
+                    <Button full bordered light onPress={this.login} style={styles.boton}>
+                        <Text style={styles.textito}>Entrar</Text>
+                    </Button>
                     <TouchableOpacity onPress={()=>Actions.recovery()}>
                         <Text style={styles.textito}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
@@ -134,6 +142,10 @@ const styles = StyleSheet.create({
         padding:20,
         justifyContent:'center',
         alignItems:'center',
+    },
+    boton:{
+        borderRadius:10,
+        marginBottom:5
     }
 
 })

@@ -28,7 +28,7 @@ export default class OrdenActiva extends Component {
                             <View key={i}>
                                 <ListItem itemDivider style={{justifyContent:'space-between'}} >
                                     <Text >Allende GOLDEN ALE</Text>
-                                    <Text style={{backgroundColor:'green', color:'white',width:80,textAlign:'center'}}>Activa</Text>
+                                    <Text style={styles.status}>Activa</Text>
                                 </ListItem>
                                 <ListItem thumbnail>
                                     <Left>
@@ -41,7 +41,9 @@ export default class OrdenActiva extends Component {
                                     <Text>Fecha: 24/05/15</Text>
                                     </Body>
                                     <Right>
-                                        <Text>Ver</Text>
+                                        <Button bordered style={styles.botoncito} onPress={()=>Actions.resumen()}>
+                                            <Text style={styles.textito}>Ver</Text>
+                                        </Button>
                                     </Right>
                                 </ListItem>
                             </View>
@@ -65,8 +67,12 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:'bold'
     },
+    botoncito:{
+        borderColor:'#d59a12'
+    },
     textito:{
         fontSize:12,
+        color:'#d59a12'
     },
     imagencitas:{
         marginRight:10
@@ -75,6 +81,12 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         alignItems:'flex-start',
         marginBottom:10,
+    },
+    status:{
+        backgroundColor:'green',
+        color:'white',
+        width:80,
+        textAlign:'center'
     }
 
 })

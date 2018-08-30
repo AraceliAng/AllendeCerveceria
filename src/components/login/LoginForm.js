@@ -1,10 +1,14 @@
 import React from 'react';
-import {StyleSheet} from 'react-native'
+import {StyleSheet,KeyboardAvoidingView} from 'react-native'
 import {Container,Content,Input,Button,Form,Item,Text} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const LoginForm = ({onChange,onSubmit,buttonD})=>(
+export const LoginForm = ({onChange})=>(
 
+
+        <KeyboardAvoidingView
+            behavior="padding"
+        >
             <Form style={styles.container}>
                 <Item regular style={styles.inputs}>
                     <Icon active name='user' size={15}  style={{marginLeft:12}} />
@@ -26,10 +30,10 @@ export const LoginForm = ({onChange,onSubmit,buttonD})=>(
                         onChangeText={value=>onChange("password",value)}
                     />
                 </Item>
-                <Button full bordered light onPress={onSubmit} style={{borderRadius:10}}>
-                    <Text>Entrar</Text>
-                </Button>
+
             </Form>
+        </KeyboardAvoidingView>
+
 );
 
 const styles = StyleSheet.create({
@@ -39,7 +43,7 @@ const styles = StyleSheet.create({
     inputs:{
         height:40,
         backgroundColor:'rgba(255, 255, 255, 0.9)',
-        marginBottom:20,
+        marginBottom:10,
         borderRadius:10
     },
     textito:{

@@ -25,7 +25,7 @@ export default class HistorialMain extends Component {
                     <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                     <Card style={{padding:10}}>
                         <CardItem style={styles.contentTitle}>
-                            <Text style={styles.title}>Promo 100 + caja</Text>
+                            <Text style={styles.title}>Allende Golden Ale</Text>
                             <Text note>JUEVES, 5 JUL - TOTAL: $1,856.00</Text>
                         </CardItem>
                         <CardItem cardBody style={{justifyContent:'flex-start',padding:20, height:80}}>
@@ -40,7 +40,7 @@ export default class HistorialMain extends Component {
 
                         </CardItem>
                         <CardItem style={{justifyContent:'flex-end'}}>
-                            <Button  bordered dark onPress={()=>Actions.resumen()}>
+                            <Button  bordered style={{borderColor:'#d59a12'}} onPress={()=>Actions.resumen()}>
                                 <Text style={styles.textito}>Ver resumen</Text>
                             </Button>
                         </CardItem>
@@ -48,7 +48,7 @@ export default class HistorialMain extends Component {
 
                     <Card style={{padding:10}}>
                         <CardItem style={styles.contentTitle}>
-                            <Text style={styles.title}>Pack Allende + cajas</Text>
+                            <Text style={styles.title}>Allende Golden Ale</Text>
                             <Text note>Viernes, 10 Enero - TOTAL: $2,500.00</Text>
                         </CardItem>
                         <CardItem cardBody style={{justifyContent:'flex-start',padding:20, height:80}}>
@@ -64,28 +64,7 @@ export default class HistorialMain extends Component {
 
                         </CardItem>
                         <CardItem style={{justifyContent:'flex-end'}}>
-                            <Button bordered dark>
-                                <Text style={styles.textito}>Ver resumen</Text>
-                            </Button>
-                        </CardItem>
-                    </Card>
-                    <Card style={{padding:10}}>
-                        <CardItem style={styles.contentTitle}>
-                            <Text style={styles.title}>Pack Carton + Cerveza</Text>
-                            <Text note>Viernes, 10 Enero - TOTAL: $2,500.00</Text>
-                        </CardItem>
-                        <CardItem cardBody style={{justifyContent:'flex-start',padding:20, height:80}}>
-
-                            <Thumbnail square source={caja}  style={styles.imagencitas}/>
-                            <View>
-                                <Thumbnail square source={caja} style={styles.imagencitas}/>
-                                <Badge style={{top:-10,right:0,position:'absolute',zIndex:9}}>
-                                    <Text>2</Text>
-                                </Badge>
-                            </View>
-                        </CardItem>
-                        <CardItem style={{justifyContent:'flex-end'}}>
-                            <Button bordered dark>
+                            <Button bordered style={{borderColor:'#d59a12'}} onPress={()=>Actions.resumen()}>
                                 <Text style={styles.textito}>Ver resumen</Text>
                             </Button>
                         </CardItem>
@@ -108,6 +87,7 @@ const styles = StyleSheet.create({
     },
     textito:{
         fontSize:12,
+        color:'#d59a12'
     },
     imagencitas:{
         marginRight:10

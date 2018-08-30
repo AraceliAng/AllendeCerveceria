@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet,View} from 'react-native'
 import {ListItem,List,Thumbnail,Body,Text} from 'native-base';
+import caja from '../../assets/img/caja.jpg'
 
 export const ResumenComponent = ({total,ipa,golden,})=>(
 
@@ -8,7 +9,7 @@ export const ResumenComponent = ({total,ipa,golden,})=>(
         <List>
             <ListItem style={styles.contentTitle}>
                 <Text style={styles.title}>Resumen de orden</Text>
-                <Text note>Total: $1,856.00</Text>
+                <Text note>Total: $3,520.00</Text>
             </ListItem>
             <ListItem itemDivider>
                 <Text style={styles.subTitle}>Detalle:</Text>
@@ -17,9 +18,9 @@ export const ResumenComponent = ({total,ipa,golden,})=>(
                 <Thumbnail  square size={80} source={caja} />
 
                 <Body>
-                <Text style={{fontSize:16}}>Caja 24 Grande</Text>
+                <Text style={{fontSize:16}}>Golden Ale</Text>
                 <Text note style={{fontSize:12, marginBottom:10}}>2 Unidades</Text>
-                <Text style={{fontSize:15}}>$1,680.00</Text>
+                <Text style={{fontSize:15}}>$1,760.00</Text>
                 </Body>
 
             </ListItem>
@@ -27,9 +28,9 @@ export const ResumenComponent = ({total,ipa,golden,})=>(
                 <Thumbnail  square size={80} source={caja} />
 
                 <Body>
-                <Text style={{fontSize:16}}>4 Pack Allende Golden Ale</Text>
+                <Text style={{fontSize:16}}>Brown Ale</Text>
                 <Text note style={{fontSize:12, marginBottom:10}}>1 Unidad</Text>
-                <Text style={{fontSize:15}}>$140.00</Text>
+                <Text style={{fontSize:15}}>$880.00</Text>
                 </Body>
 
             </ListItem>
@@ -37,9 +38,9 @@ export const ResumenComponent = ({total,ipa,golden,})=>(
                 <Thumbnail  square size={80} source={caja} />
 
                 <Body>
-                <Text style={{fontSize:16}}>Allende Golden Ale</Text>
+                <Text style={{fontSize:16}}>Agave Lager</Text>
                 <Text note style={{fontSize:12, marginBottom:10}}>1 Unidad</Text>
-                <Text style={{fontSize:15}}>$36.00</Text>
+                <Text style={{fontSize:15}}>$880.00</Text>
                 </Body>
 
             </ListItem>
@@ -51,7 +52,7 @@ export const ResumenComponent = ({total,ipa,golden,})=>(
                 <Text style={{fontSize:16, fontWeight:'bold'}}>Total:</Text>
                 </Body>
                 <Body style={{alignItems:'flex-end'}}>
-                <Text style={{fontSize:16, fontWeight:'bold'}}>$1,856.00</Text>
+                <Text style={{fontSize:16, fontWeight:'bold'}}>$3,520.00</Text>
                 </Body>
 
 
@@ -70,8 +71,9 @@ const styles = StyleSheet.create({
         marginBottom:20,
         borderRadius:10
     },
-    textito:{
-
+    contentTitle:{
+        flexDirection:'column',
+        justifyContent:'flex-start'
     },
     botoncito:{
         color:'#ebecf2'
