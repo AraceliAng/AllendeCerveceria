@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Platform,StatusBar, ScrollView,AsyncStorage,} from 'react-native';
+import {StyleSheet, Text, View, Platform, StatusBar, ScrollView, AsyncStorage, Alert,} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {Header,Button,Icon,List,ListItem,Content,Badge,Toast} from 'native-base'
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
@@ -183,6 +183,25 @@ export default class CatalogoMain extends Component {
         this.setState({modalDetalle:false,detalle:{}})
     }
 
+    //mensaje para comprar
+    orderReady=()=>{
+        const message = '¿Quieres continuar?';
+        Alert.alert(
+            '¡Tu orden se creara con estos elementos!',
+            message,
+            [
+                {
+                    text: 'Crear',
+                    onPress:this.createOrdern
+                },
+                {
+                    text: 'Cancelar',
+                    onPress: null
+                }
+            ]
+        )
+    }
+
     render() {
             let {modalVisible,products,caja4,botella,carrito,modalDetalle,detalle}=this.state;
         return (
@@ -194,7 +213,7 @@ export default class CatalogoMain extends Component {
                          addMore={this.addToCart}
                          total={this.state.total}
                          vaciar={this.deleteCarrit}
-                         createOrden={this.createOrdern}
+                         createOrden={this.orderReady}
                 />
                 <DetalleCerveza open={modalDetalle}
                                 close={this.closeDetalle}
