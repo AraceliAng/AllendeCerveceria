@@ -28,7 +28,7 @@ export default class ReaderQr extends Component {
             Actions.resumen()
         }else{
             console.log("datitos",datos)
-            this.setState({qrcode: e.data})
+            this.setState({qrcode: "Ready ok!"})
         }
 
 

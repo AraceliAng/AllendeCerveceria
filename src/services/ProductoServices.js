@@ -1,4 +1,4 @@
-const apiUrl = "https://allende-frontend.herokuapp.com";
+const apiUrl = "https://stark-fortress-68174.herokuapp.com";
 
 export function getProducts(){
     return fetch(apiUrl + '/products')

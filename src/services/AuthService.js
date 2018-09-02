@@ -1,4 +1,4 @@
-const baseUrl = "https://allende-frontend.herokuapp.com/";
+const baseUrl = "https://stark-fortress-68174.herokuapp.com/";
 import { AsyncStorage } from "react-native"
 
 export const logIn = (user)=>{

@@ -26,7 +26,9 @@ export default class CatalogoMain extends Component {
         total:0,
         user:{},
         modalDetalle:false,
-        detalle:{}
+        detalle:{},
+        logged:false,
+
     }
 
     componentWillMount(){
@@ -49,7 +51,7 @@ export default class CatalogoMain extends Component {
             let user = JSON.parse(userLocal)
             if(user){
                 console.log("hay usuario",user)
-                this.setState({user:user})
+                this.setState({user:user,logged:true})
             }else{
                 console.log("no hay nada")
             }
@@ -103,7 +105,7 @@ export default class CatalogoMain extends Component {
     //Para buscar un item en el array
     searchProd = (prod,cant) =>{
         let {carrito}=this.state;
-        var precio = 880
+        var precio = 840
         var buscar = carrito.find(item => item.id === prod.id);
         console.log(buscar)
        if(undefined != buscar && buscar != null){
@@ -203,7 +205,7 @@ export default class CatalogoMain extends Component {
     }
 
     render() {
-            let {modalVisible,products,caja4,botella,carrito,modalDetalle,detalle}=this.state;
+            let {modalVisible,products,caja4,botella,carrito,modalDetalle,detalle,logged}=this.state;
         return (
             <View style={{ flex: 1 }}>
                 <Carrito open={modalVisible}
@@ -285,7 +287,7 @@ export default class CatalogoMain extends Component {
                                 {botella.map((product,index)=>
 
                                     <View View style={{ width:200, marginLeft:20}} key={index} >
-                                        <CardProduct {...product} key={index} item={product} addToCart={this.addToCart} open={this.openDetalle}/>
+                                        <CardProduct {...product} key={index} item={product} addToCart={this.addToCart} open={this.openDetalle} logged={logged}/>
                                     </View>
 
 
@@ -300,7 +302,7 @@ export default class CatalogoMain extends Component {
                             <ScrollView  horizontal={true} style={{marginBottom:10}}>
                                 {caja4.map((product,index)=>
                                     <View View style={{ width:200, marginLeft:20}} key={index} >
-                                        <CardProduct {...product} item={product} addToCart={this.addToCart} open={this.openDetalle}/>
+                                        <CardProduct {...product} item={product} addToCart={this.addToCart} open={this.openDetalle} logged={logged}/>
                                     </View>
 
                                 )}
@@ -313,7 +315,7 @@ export default class CatalogoMain extends Component {
 
                                 {products.map((product,index)=>
                                     <View View style={{ width:200, marginLeft:20}} key={index} >
-                                        <CardProduct {...product}  item={product} addToCart={this.addToCart} open={this.openDetalle}/>
+                                        <CardProduct {...product}  item={product} addToCart={this.addToCart} open={this.openDetalle} logged={logged}/>
                                     </View>
 
                                 )}

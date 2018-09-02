@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import {View, StyleSheet, StatusBar, Platform, AsyncStorage} from 'react-native';
 import {Container,Content,Header,Left,Right,Body,Text,Title,Button,Icon,Drawer} from 'native-base'
 import SideBar from './SideBar'
-import Promociones from "./Promociones";
+import {Promociones} from "./Promociones";
+import {DetallePromociones} from "./DetallePrimociones";
 
 
 type Props={};
@@ -11,6 +12,8 @@ export default class MainPage extends Component<Props>{
     state={
         user:{},
         logged:false,
+        modalDetalle:false,
+        detalle:{}
     }
 
     componentWillMount(){
@@ -31,6 +34,13 @@ export default class MainPage extends Component<Props>{
             // Error retrieving data
         }
     }
+    openDetalle = ()=>{
+        this.setState({modalDetalle:true})
+
+    }
+    closeDetalle = ()=>{
+        this.setState({modalDetalle:false,detalle:{}})
+    }
 
 
     render(){
@@ -41,7 +51,7 @@ export default class MainPage extends Component<Props>{
             this.drawer._root.open()
         };
 
-        let {user,logged}=this.state
+        let {user,logged,modalDetalle}=this.state
         return (
             <Container >
 
@@ -68,9 +78,9 @@ export default class MainPage extends Component<Props>{
                     </Header>
 
                     <Content style={{padding:20}}>
-
+                        <DetallePromociones open={modalDetalle} close={this.closeDetalle}/>
                         {[0,1,2,3,4,5,6].map((promo,i)=>
-                            <Promociones key={i}/>
+                            <Promociones key={i} open={this.openDetalle}/>
                         )}
                     </Content>
                 </Drawer>
