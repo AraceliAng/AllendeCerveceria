@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Alert, StatusBar } from 'react-native';
+import { StyleSheet, Text, View,Alert, StatusBar,Picker } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import {Header,Button,Icon,List,ListItem,Body,Right,Left,Content} from 'native-base'
+import {Header,Button,Icon,List,ListItem,Body,Right,Left,Content} from 'native-base';
+import { Dropdown } from 'react-native-material-dropdown';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 import fondo from '../../assets/img/allende.jpg'
 import {Actions} from "react-native-router-flux";
 import openMap from 'react-native-open-maps';
+import {Datadistri} from '../../assets/DataDistri'
 
 const MIN_HEIGHT = Header.HEIGHT;
 const MAX_HEIGHT = 250;
 
 const styles = StyleSheet.create({
 
-    section: {
-
-    },
     titleContainer: {
         flex: 1,
         alignSelf: 'stretch',
@@ -47,7 +46,14 @@ const styles = StyleSheet.create({
 export default class Contactanos extends Component {
     constructor() {
         super();
-        this.state = { showNavTitle: false };
+        this.state = { showNavTitle: false,language:'Selecciona',dist:[],searchText:'' };
+    }
+    componentWillMount(){
+
+        this.setState({dist:Datadistri})
+
+
+
     }
     goToAllende() {
         openMap({ latitude: 20.915978, longitude: -100.765236 });
@@ -72,7 +78,90 @@ export default class Contactanos extends Component {
         )
     }
 
+    search=(e)=>{
+        this.setState({searchText:e})
+        console.log(e)
+    }
+
     render() {
+        let data = [{
+            value: 'Aguascalientes',
+        }, {
+            value: 'Baja California',
+        }, {
+            value: 'Baja California Sur',
+        },{
+            value: 'Campeche',
+        },{
+            value: 'Chiapas',
+        },{
+            value: 'Chihuahua',
+        },{
+            value: 'Ciudad de México',
+        },{
+            value: 'Coahuila de Zaragoza',
+        },{
+            value: 'Colima',
+        },{
+            value: 'Durango',
+        },{
+            value: 'Guanajuato',
+        },{
+            value: 'Guerrero',
+        },{
+            value: 'Hidalgo',
+        },{
+            value: 'Jalisco',
+        },{
+            value: 'México',
+        },{
+            value: 'Michoacán de Ocampo',
+        },{
+            value: 'Morelos',
+        },{
+            value: 'Nayarit',
+        },{
+            value: 'Nuevo León',
+        },{
+            value: 'Oaxaca',
+        },{
+            value: 'Puebla',
+        },{
+            value: 'Querétaro de Arteaga',
+        },{
+            value: 'Quintana Roo',
+        },{
+            value: 'San Luis Potosí',
+        },{
+            value: 'Sinaloa',
+        },{
+            value: 'Sonora',
+        },{
+            value: 'Tabasco',
+        },{
+            value: 'Tamaulipas',
+        },{
+            value: 'Tlaxcala',
+        },{
+            value: 'Veracruz',
+        },{
+            value: 'Yucatán',
+        },{
+            value: 'Zacatecas',
+        },{
+            value: 'Otros',
+        }];
+
+        let {dist,searchText}=this.state;
+        console.log("hay datos:",searchText)
+        let searchFilter =dist.filter(
+            (distri)=>{
+                return distri.direccion.toLowerCase().indexOf(
+                    searchText.toLowerCase()
+                ) !==-1;
+            }
+        );
+        let text=this.state.searchText;
         return (
             <View style={{ flex: 1 }}>
                 <View style={{position:'absolute',zIndex:9,marginTop:20}}>
@@ -110,50 +199,41 @@ export default class Contactanos extends Component {
                         onHide={() => this.navTitleView.fadeInUp(150)}
                         onDisplay={() => this.navTitleView.fadeOut(100)}
                     >
-                        <List>
-                            <ListItem itemDivider>
-                                <Text style={styles.subTitle}>Teléfono:</Text>
-                            </ListItem>
-                        </List>
+                        <Dropdown
+                            label='¿De donde eres?'
+                            data={data}
+                            onChangeText={this.search}
+                        />
+
 
                     </TriggeringView>
+
                     <List>
+                        {searchText == '' ? <ListItem itemDivider>
+                                <Text style={styles.subTitle}>Encuentra a tu distribuidor mas cercano </Text>
+                            </ListItem> :
+                            [(
+                            searchFilter.length  <= 0 ?
+                                <ListItem itemDivider>
+                                    <Text style={styles.subTitle}>No tenemos distribuidores en {text}</Text>
+                                </ListItem> :
+                                searchFilter.map((data, i)=>
+                                    <ListItem avatar key={i}>
 
-                        <ListItem icon onPress={this.llamame}>
-                            <Left>
-                                <Icon name="call" />
-                            </Left>
-                            <Body>
-                            <Text>+52 (55) 5292 1154</Text>
-                            </Body>
-                            <Right/>
-                        </ListItem>
-                        <ListItem itemDivider >
-                            <Text style={styles.subTitle}>Email:</Text>
-                        </ListItem>
-                        <ListItem icon>
-                            <Left>
-                                <Icon name="mail" />
-                            </Left>
+                                        <Body >
+                                        <View style={{alignItems:'center'}}><Text>{data.name}</Text></View>
 
-                            <Body>
-                            <Text>info@cerveceriaallende.com</Text>
-                            </Body>
-                            <Right/>
-                        </ListItem>
-                        <ListItem itemDivider >
-                            <Text style={styles.subTitle}>Direcciòn:</Text>
-                        </ListItem>
-                        <ListItem icon onPress={this.goToAllende}>
-                            <Left>
-                                <Icon name="navigate" />
-                            </Left>
+                                        <Text note>Direccion: {data.direccion} </Text>
+                                        <Text note>Telefono: {data.phone} </Text>
+                                        <Text note>Email:{data.email} </Text>
+                                        </Body>
 
-                            <Body>
-                            <Text>Calzada de la Estacion 19, Estación F.F.C.C., 37759 San Miguel de Allende, Gto.</Text>
-                            </Body>
-                            <Right/>
-                        </ListItem>
+                                    </ListItem>
+                                )
+                            )]
+
+                        }
+
                     </List>
                 </HeaderImageScrollView>
             </View>

@@ -4,6 +4,7 @@ import {Container,Content,Header,Left,Right,Body,Text,Title,Button,Icon,Drawer} 
 import SideBar from './SideBar'
 import {Promociones} from "./Promociones";
 import {DetallePromociones} from "./DetallePrimociones";
+import {getPromo} from "../../services/PromoService";
 
 
 type Props={};
@@ -13,12 +14,21 @@ export default class MainPage extends Component<Props>{
         user:{},
         logged:false,
         modalDetalle:false,
-        detalle:{}
+        detalle:{},
+        promos:[]
     }
 
     componentWillMount(){
 
         this._retrieveData()
+        getPromo()
+            .then(r=>{
+                console.log("que esto",r)
+                this.setState({promos:r})
+
+            }).catch(e=>{
+            console.log("el error",e)
+        })
     }
     _retrieveData = async () => {
         try {
@@ -51,7 +61,7 @@ export default class MainPage extends Component<Props>{
             this.drawer._root.open()
         };
 
-        let {user,logged,modalDetalle}=this.state
+        let {user,logged,modalDetalle,promos}=this.state
         return (
             <Container >
 
@@ -79,8 +89,8 @@ export default class MainPage extends Component<Props>{
 
                     <Content style={{padding:20}}>
                         <DetallePromociones open={modalDetalle} close={this.closeDetalle}/>
-                        {[0,1,2,3,4,5,6].map((promo,i)=>
-                            <Promociones key={i} open={this.openDetalle}/>
+                        {promos.map((promo,i)=>
+                            <Promociones key={i} open={this.openDetalle} {...promo}/>
                         )}
                     </Content>
                 </Drawer>

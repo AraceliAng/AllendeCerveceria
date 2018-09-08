@@ -9,7 +9,7 @@ import {
     View,
     Image
 } from 'react-native';
-import {Header,Body,Left,Right,Icon,Title,Button } from 'native-base'
+import {Header, Body, Left, Right, Icon, Title, Button, Toast} from 'native-base'
 import Camera from 'react-native-camera';
 import {Actions} from 'react-native-router-flux';
 
@@ -26,10 +26,23 @@ export default class ReaderQr extends Component {
         let datos = JSON.parse(e.data)
         if(datos.orden){
             Actions.resumen()
+        }else if(datos.dist){
+            Toast.show({
+                    text: "Si te puedo vender!",
+                position: "bottom",
+                style: { bottom: "50%" },
+                    type: "success"
+                })
+
         }else{
-            console.log("datitos",datos)
-            this.setState({qrcode: "Ready ok!"})
+                Toast.show({
+                    text: "No te puedo vender",
+                    position: "bottom",
+                    style: { bottom: "50%" },
+                    type: "danger"})
         }
+
+
 
 
     };
@@ -53,9 +66,7 @@ export default class ReaderQr extends Component {
                     ref={cam => this.camera = cam}
                     aspect={Camera.constants.Aspect.fill}
                 >
-                    <Text style={{
-                        backgroundColor: 'white'
-                    }}>{this.state.qrcode}</Text>
+
                 </Camera>
 
             </View>

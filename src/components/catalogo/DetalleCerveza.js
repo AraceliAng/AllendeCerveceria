@@ -27,7 +27,7 @@ export const DetalleCerveza =({name,fermentacion,alc,IBUS,color,aroma,sabor,tiem
                     </Body>
                     <Right/>
                 </Header>
-                <Content>
+                <Content style={{padding:15}}>
                     <StatusBar backgroundColor="rgb(239,239,244)" barStyle={Platform.OS === 'android' ? "dark-content": "default" }  />
                     <Image source={caja} style={{height: 200, width: null, flex: 1}}/>
                     <Grid>

@@ -3,15 +3,15 @@ import {ImageBackground,StyleSheet,Image} from 'react-native'
 import {  Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import fondo from '../../assets/img/promo.jpg'
 import logo from '../../assets/img/logo.png'
-
-export const Promociones =({open})=> (
+import  moment  from 'moment'
+export const Promociones =({open,promoName,created_at})=> (
 
     <Card>
         <CardItem>
             <Left>
                 <Thumbnail source={logo}/>
                 <Body>
-                <Text>Pack Mundialista</Text>
+                <Text>{promoName}</Text>
                 <Text note>¿Por qué tener una si puedes tener 10?</Text>
                 </Body>
             </Left>
@@ -27,7 +27,7 @@ export const Promociones =({open})=> (
             </Left>
             <Body/>
             <Right>
-                <Text style={styles.textito}>11h ago</Text>
+                <Text style={styles.textito}>{moment(created_at).startOf('hour').fromNow()}</Text>
             </Right>
         </CardItem>
     </Card>
